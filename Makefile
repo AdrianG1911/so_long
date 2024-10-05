@@ -1,5 +1,5 @@
 NAME		= so_long
-CC			= cc
-CFLAGS		= -Wall -Wextra -Werror
+CC			= gcc
+CFLAGS		= -Wall -Wextra -Werror -lX11 -lXext -lm
 RM			= rm -fr
 OBJ_DIR		= obj
