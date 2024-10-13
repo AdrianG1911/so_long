@@ -17,4 +17,25 @@
 # include <fcntl.h>
 # include <math.h>
 
+//game structure
+typedef struct	s_game
+{
+	char	**g_map;
+	int		x_pos;
+	int		y_pos;
+	char	face_dir;
+	int		fish_left;
+	int		moves_done;
+}	t_game;
+
+//game
+void	free_game(t_game *game);
+
+//mapstuff
+void	free_g_map(char **g_map);
+char	**read_g_map(const char *g_mapfile);
+
+//check
+int		outer_wall(char	**g_map);
+int		completable_check(char	**g_map)
 #endif

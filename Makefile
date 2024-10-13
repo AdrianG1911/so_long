@@ -18,7 +18,12 @@ LDLIBS		= -lft -lmlx_Linux -lm -lXext -lX11
 RM			= rm -fr
 OBJ_DIR		= obj
 
-SRCS		= src/so_long.c
+SRCS		= src/so_long.c \
+			  src/free_stuff.c \
+			  src/make_and_count_map.c \
+			  src/init_game.c \
+			  src/map_checker.c \
+			  src/map_completable_check.c
 
 OBJS		= $(SRCS:src/%.c=$(OBJ_DIR)/%.o)
 
