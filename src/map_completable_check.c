@@ -77,6 +77,6 @@ int	completable_check(char	**g_map)
 	}
 	filldupmap(duped, x, y);
 	if (is_completable(duped) == -1)
-		return (ft_putstr_fd("Error\nmap not completable", STDERR_FILENO), -1);
+		return (ft_putendl_fd("Error\nmap not completable", STDERR_FILENO), -1);
 	return (1);
 }

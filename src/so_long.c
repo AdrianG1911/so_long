@@ -66,17 +66,12 @@ int close_window(void *param)
 	return (0);
 }
 
-int memerror_free(int error, t_all *all, void *mlx)
+int memerror_free(int error, t_all *all)
 {
     if (error == ENOMEM)
 		ft_putstr_fd("Error\nnot enough memory\n", STDERR_FILENO);
 	else
 		ft_putstr_fd("", STDERR_FILENO);
-    if (!all && mlx)
-    {
-        mlx_destroy_display(mlx);
-        free(mlx);
-    }
     free_all(all);
     return (1);
 }
@@ -90,15 +85,14 @@ int main(int argc, char *argv[])
     if (argc != 2)
         return (ft_putendl_fd("Error\nneed map path as argument", STDERR_FILENO), 1);
     mlx = mlx_init();
+    if (!mlx)
+        return (ft_putendl_fd("Error\nmlx fail", STDERR_FILENO), 1);
     all = init_all(mlx, argv[1]);
     if (!all)
-        return (memerror_free(errno, all, mlx));
-    win = mlx_new_window(mlx, all->game->map_w * 32, all->game->map_h * 32, "Test Window");
+        return (memerror_free(errno, all));
+    win = mlx_new_window(mlx, all->game->map_w * 32, all->game->map_h * 32, "Thanks!");
     if (!win)
-    {
-        ft_putendl_fd("Error\nwindow failed to make", STDERR_FILENO);
-        return (memerror_free(errno, all, mlx));
-    }
+        return (memerror_free(errno, all));
     all->win = win;
     render_map_and_dolphin(all);
     mlx_key_hook(win, key_press, (void *)all);

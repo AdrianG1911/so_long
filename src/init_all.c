@@ -9,8 +9,10 @@ t_all	*init_all(void *mlx, const char *g_mapfile)
 		return (NULL);
 	all->mlx = mlx;
 	all->game = init_game(g_mapfile);
+	if (!all->game)
+		return (free_all(all), NULL);
 	all->textures = init_textures(mlx);
-	if (!all->game || !all->textures)
+	if (!all->textures)
 		return (free_all(all), NULL);
 	return (all);
 }

@@ -49,11 +49,8 @@ void	free_all(t_all *all)
 	{
 		free_game(all->game);
 		free_textures(all->mlx, all->textures);
-		if (all->mlx)
-		{
-			mlx_destroy_display(all->mlx);
-			free(all->mlx);
-		}
+		mlx_destroy_display(all->mlx);
+		free(all->mlx);
 		free(all);
 	}
 }
