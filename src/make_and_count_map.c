@@ -15,7 +15,7 @@ int	count_rows(const char *g_mapfile)
 	{
 		bytesRead = read(fd, &c, 1);
 		if (bytesRead < 0)
-			return (perror("Read error"), close(fd), -1);
+			return (ft_putendl_fd("Error\nread", STDERR_FILENO), close(fd), -1);
 		if (bytesRead == 0)
 			break ;
 		if (c == '\n')
@@ -40,7 +40,7 @@ int	count_columns(const char *g_mapfile)
 	{
 		bytesRead = read(fd, &c, 1);
 		if (bytesRead < 0)
-			return (perror("Read error"), close(fd), -1);
+			return (ft_putendl_fd("Error\nread", STDERR_FILENO), close(fd), -1);
 		if (c == '\n')
 			break ;
 		columnCount++;
@@ -98,7 +98,7 @@ char	**read_g_map(const char *g_mapfile)
 	while (i < r_and_c[0])
 	{
 		if (read(fd, g_map[i], r_and_c[1] + 1) < r_and_c[1] + 1)
-			return (perror("Read error"), free_g_map(g_map), close(fd), NULL);
+			return (ft_putendl_fd("Error\nread", STDERR_FILENO), free_g_map(g_map), close(fd), NULL);
 		g_map[i][r_and_c[1]] = 0;
 		i++;
 	}

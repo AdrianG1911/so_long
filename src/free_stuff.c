@@ -24,3 +24,36 @@ void	free_game(t_game *game)
 		free(game);
 	}
 }
+
+void	free_textures(void *mlx, t_textures *tts)
+{
+	if (tts)
+	{
+		if (tts->space)
+			mlx_destroy_image(mlx, tts->space);
+		if (tts->wall)
+			mlx_destroy_image(mlx, tts->wall);
+		if (tts->end)
+			mlx_destroy_image(mlx, tts->end);
+		if (tts->fish)
+			mlx_destroy_image(mlx, tts->fish);
+		if (tts->dolphin)
+			mlx_destroy_image(mlx, tts->dolphin);
+		free(tts);
+	}
+}
+
+void	free_all(t_all *all)
+{
+	if (all)
+	{
+		free_game(all->game);
+		free_textures(all->mlx, all->textures);
+		if (all->mlx)
+		{
+			mlx_destroy_display(all->mlx);
+			free(all->mlx);
+		}
+		free(all);
+	}
+}

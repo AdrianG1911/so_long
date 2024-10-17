@@ -23,7 +23,11 @@ SRCS		= src/so_long.c \
 			  src/make_and_count_map.c \
 			  src/init_game.c \
 			  src/map_checker.c \
-			  src/map_completable_check.c
+			  src/map_completable_check.c \
+			  src/play.c \
+			  src/init_textures.c \
+			  src/init_all.c \
+			  src/image_stuff.c \
 
 OBJS		= $(SRCS:src/%.c=$(OBJ_DIR)/%.o)
 
@@ -34,7 +38,7 @@ $(OBJ_DIR)/%.o: src/%.c
 $(NAME): $(OBJS)
 	make -C minilibx-linux
 	make -C libft
-	$(CC) $(OBJS) $(LDFLAGS) $(LDLIBS) -o $(NAME)
+	$(CC) $(OBJS) $(LDFLAGS) $(LDLIBS) -g -o $(NAME)
 
 all: $(NAME)
 
