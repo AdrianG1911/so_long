@@ -75,8 +75,18 @@ void	render_dolphin(t_all *all)
 	draw_dolphin(all, x_strt, y_strt, facing);
 }
 
-void	render_map_and_dolphin(t_all *all)
+void	update_map(t_all *all, int dol_x, int dol_y)
 {
-	render_g_map(all);
-	render_dolphin(all);
+	void *img;
+
+	img = get_image(all->game->g_map[dol_y][dol_x], all);
+	mlx_put_image_to_window(all->mlx, all->win, img, dol_x * 32, dol_y * 32);
+	img = get_image(all->game->g_map[dol_y][dol_x + 1], all);
+	mlx_put_image_to_window(all->mlx, all->win, img, (dol_x + 1) * 32, dol_y * 32);
+	img = get_image(all->game->g_map[dol_y][dol_x - 1], all);
+	mlx_put_image_to_window(all->mlx, all->win, img, (dol_x - 1) * 32, dol_y * 32);
+	img = get_image(all->game->g_map[dol_y + 1][dol_x], all);
+	mlx_put_image_to_window(all->mlx, all->win, img, dol_x * 32, (dol_y + 1) * 32);
+	img = get_image(all->game->g_map[dol_y - 1][dol_x], all);
+	mlx_put_image_to_window(all->mlx, all->win, img, dol_x * 32, (dol_y - 1) * 32);
 }

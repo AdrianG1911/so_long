@@ -43,7 +43,8 @@ int key_press(int keycode, void *param)
         return (0);
     if (move_eat_finish(all->game, move) == 1)
         move = 'F';
-    render_map_and_dolphin(all);
+    update_map(all, all->game->dol_x, all->game->dol_y);
+    render_dolphin(all);
     if (move != 'E')
         printf("Moves: %d\n", all->game->moves_done);
     if (move == 'E' || move == 'F')
@@ -94,7 +95,8 @@ int main(int argc, char *argv[])
     if (!win)
         return (memerror_free(errno, all));
     all->win = win;
-    render_map_and_dolphin(all);
+    render_g_map(all);
+    render_dolphin(all);
     mlx_key_hook(win, key_press, (void *)all);
 	mlx_hook(win, 17, 0, close_window, (void *)all);
     mlx_loop(mlx);

@@ -80,7 +80,9 @@ void	free_all(t_all *all);
 
 //render
 void	render_g_map(t_all *all);
-void	render_map_and_dolphin(t_all *all);
+void	render_dolphin(t_all *all);
+void	update_map(t_all *all, int dol_x, int dol_y);
+
 
 //play
 int		move_eat_finish(t_game *game, char move_dir);
