@@ -84,7 +84,7 @@ int main(int argc, char *argv[])
     t_all       *all;
 
     if (argc != 2)
-        return (ft_putendl_fd("Error\nneed map path as argument", STDERR_FILENO), 1);
+        return (ft_putendl_fd("Error\nneed a map path as argument", STDERR_FILENO), 1);
     mlx = mlx_init();
     if (!mlx)
         return (ft_putendl_fd("Error\nmlx fail", STDERR_FILENO), 1);
