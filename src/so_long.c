@@ -6,7 +6,7 @@
 /*   By: adrgutie <adrgutie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 20:35:34 by adrgutie          #+#    #+#             */
-/*   Updated: 2024/10/19 17:31:03 by adrgutie         ###   ########.fr       */
+/*   Updated: 2024/10/19 21:06:27 by adrgutie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	key_press(int keycode, void *param)
 	update_map(all, all->game->dol_x, all->game->dol_y);
 	render_dolphin(all);
 	if (move != 'E')
-		printf("Moves: %d\n", all->game->moves_done);
+		ft_printf("Moves: %d\n", all->game->moves_done);
 	if (move == 'E' || move == 'F')
 	{
 		mlx_destroy_window(all->mlx, all->win);
@@ -97,6 +97,7 @@ int	main(int argc, char *argv[])
 	all->win = win;
 	render_g_map(all);
 	render_dolphin(all);
+	ft_printf("Moves: 0\n");
 	mlx_key_hook(win, key_press, (void *)all);
 	mlx_hook(win, 17, 0, close_window, (void *)all);
 	mlx_loop(mlx);

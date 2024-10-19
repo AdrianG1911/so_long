@@ -6,7 +6,7 @@
 /*   By: adrgutie <adrgutie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 16:00:27 by adrgutie          #+#    #+#             */
-/*   Updated: 2024/10/19 17:40:25 by adrgutie         ###   ########.fr       */
+/*   Updated: 2024/10/19 20:54:42 by adrgutie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,8 @@ int	count_stuff(char **g_map)
 int	g_map_checker(char **g_map)
 {
 	if (outer_wall(g_map) == -1)
-		return (ft_putendl_fd("Error\n\
-	outer wall rectangle needed", STDERR_FILENO), -1);
+		return (ft_putendl_fd("Error\nouter wall rectangle needed", \
+	STDERR_FILENO), -1);
 	if (count_stuff(g_map) == -1)
 		return (-1);
 	if (completable_check(g_map) == -1)

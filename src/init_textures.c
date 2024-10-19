@@ -6,7 +6,7 @@
 /*   By: adrgutie <adrgutie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 16:00:35 by adrgutie          #+#    #+#             */
-/*   Updated: 2024/10/19 17:31:29 by adrgutie         ###   ########.fr       */
+/*   Updated: 2024/10/19 20:57:31 by adrgutie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ int	load_image(void	*mlx, t_tts *tts, void **t, char *tts_name)
 	ft_strlcat(path, ".xpm", 25);
 	*t = mlx_xpm_file_to_image(mlx, path, &w, &h);
 	if (!(*t))
-		return (ft_putendl_fd("Error\ntexture \
-	error", STDERR_FILENO), free_textures(mlx, tts), -1);
+		return (ft_putendl_fd("Error\ntexture error", \
+		STDERR_FILENO), free_textures(mlx, tts), -1);
 	return (1);
 }
 
@@ -34,8 +34,8 @@ int	load_data(void	*mlx, t_tts *tts)
 	tts->dolphin_data = mlx_get_data_addr(tts->dolphin, &(tts->d_bpp), \
 	&(tts->d_sl), &(tts->d_endian));
 	if (!tts->dolphin_data)
-		return (ft_putendl_fd("Error\ntexture \
-	error", STDERR_FILENO), free_textures(mlx, tts), -1);
+		return (ft_putendl_fd("Error\ntexture error", \
+		STDERR_FILENO), free_textures(mlx, tts), -1);
 	return (1);
 }
 

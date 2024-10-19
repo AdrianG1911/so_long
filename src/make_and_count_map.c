@@ -6,7 +6,7 @@
 /*   By: adrgutie <adrgutie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 16:00:31 by adrgutie          #+#    #+#             */
-/*   Updated: 2024/10/19 17:35:25 by adrgutie         ###   ########.fr       */
+/*   Updated: 2024/10/19 20:57:12 by adrgutie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,8 +110,8 @@ char	**read_g_map(const char *g_mapfile)
 	while (i < r_and_c[0])
 	{
 		if (read(fd, g_map[i], r_and_c[1] + 1) < r_and_c[1] + 1)
-			return (ft_putendl_fd("Error\n\
-		read", STDERR_FILENO), free_g_map(g_map), close(fd), NULL);
+			return (ft_putendl_fd("Error\nread", \
+			STDERR_FILENO), free_g_map(g_map), close(fd), NULL);
 		g_map[i][r_and_c[1]] = 0;
 		i++;
 	}
