@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_textures.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adrgutie <adrgutie@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/19 16:00:35 by adrgutie          #+#    #+#             */
+/*   Updated: 2024/10/19 17:31:29 by adrgutie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
-int			load_image(void	*mlx, t_textures *tts, void **t, char *tts_name)
+int	load_image(void	*mlx, t_tts *tts, void **t, char *tts_name)
 {
 	char	path[25];
 	int		w;
@@ -12,23 +24,26 @@ int			load_image(void	*mlx, t_textures *tts, void **t, char *tts_name)
 	ft_strlcat(path, ".xpm", 25);
 	*t = mlx_xpm_file_to_image(mlx, path, &w, &h);
 	if (!(*t))
-		return (ft_putendl_fd("Error\ntexture error", STDERR_FILENO), free_textures(mlx, tts), -1);
+		return (ft_putendl_fd("Error\ntexture \
+	error", STDERR_FILENO), free_textures(mlx, tts), -1);
 	return (1);
 }
 
-int		load_data(void	*mlx, t_textures *tts)
+int	load_data(void	*mlx, t_tts *tts)
 {
-	tts->dolphin_data = mlx_get_data_addr(tts->dolphin, &(tts->d_bpp), &(tts->d_sl), &(tts->d_endian));
+	tts->dolphin_data = mlx_get_data_addr(tts->dolphin, &(tts->d_bpp), \
+	&(tts->d_sl), &(tts->d_endian));
 	if (!tts->dolphin_data)
-		return (ft_putendl_fd("Error\ntexture error", STDERR_FILENO), free_textures(mlx, tts), -1);
+		return (ft_putendl_fd("Error\ntexture \
+	error", STDERR_FILENO), free_textures(mlx, tts), -1);
 	return (1);
 }
 
-t_textures	*init_textures(void *mlx)
+t_tts	*init_textures(void *mlx)
 {
-	t_textures	*tts;
+	t_tts	*tts;
 
-	tts = (t_textures *)ft_calloc(1, sizeof(t_textures));
+	tts = (t_tts *)ft_calloc(1, sizeof(t_tts));
 	if (!tts)
 		return (NULL);
 	if (load_image(mlx, tts, &(tts->space), "space") == -1)

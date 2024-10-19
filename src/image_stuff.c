@@ -1,17 +1,28 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   image_stuff.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adrgutie <adrgutie@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/19 16:00:46 by adrgutie          #+#    #+#             */
+/*   Updated: 2024/10/19 17:40:57 by adrgutie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 void	*get_image(char tile, t_all *all)
 {
 	if (tile == 'C')
-		return (all->textures->fish);
+		return (all->tts->fish);
 	if (tile == 'E')
-		return (all->textures->end);
+		return (all->tts->end);
 	if (tile == 'P' || tile == '0')
-		return (all->textures->space);
+		return (all->tts->space);
 	if (tile == '1')
-		return (all->textures->wall);
+		return (all->tts->wall);
 	return (NULL);
-
 }
 
 void	render_g_map(t_all *all)
@@ -34,8 +45,7 @@ void	render_g_map(t_all *all)
 	}
 }
 
-
-void	draw_dolphin(t_all *all, int x_strt, int y_strt, char facing)
+void	draw_dolphin(t_all *all, int x_s, int y_s, char facing)
 {
 	int	x;
 	int	truex;
@@ -53,10 +63,10 @@ void	draw_dolphin(t_all *all, int x_strt, int y_strt, char facing)
 				truex = abs(x - 31);
 			else
 				truex = x;
-			pixel_index = y * all->textures->d_sl + x * (all->textures->d_bpp / 8);
-			color = *(int *)(all->textures->dolphin_data + pixel_index);
+			pixel_index = y * all->tts->d_sl + x * (all->tts->d_bpp / 8);
+			color = *(int *)(all->tts->dolphin_data + pixel_index);
 			if (color != 0xFFFFFF)
-				mlx_pixel_put(all->mlx, all->win, truex + x_strt, y + y_strt, color);
+				mlx_pixel_put(all->mlx, all->win, truex + x_s, y + y_s, color);
 			x++;
 		}
 		y++;
@@ -75,18 +85,18 @@ void	render_dolphin(t_all *all)
 	draw_dolphin(all, x_strt, y_strt, facing);
 }
 
-void	update_map(t_all *all, int dol_x, int dol_y)
+void	update_map(t_all *all, int x, int y)
 {
-	void *img;
+	void	*img;
 
-	img = get_image(all->game->g_map[dol_y][dol_x], all);
-	mlx_put_image_to_window(all->mlx, all->win, img, dol_x * 32, dol_y * 32);
-	img = get_image(all->game->g_map[dol_y][dol_x + 1], all);
-	mlx_put_image_to_window(all->mlx, all->win, img, (dol_x + 1) * 32, dol_y * 32);
-	img = get_image(all->game->g_map[dol_y][dol_x - 1], all);
-	mlx_put_image_to_window(all->mlx, all->win, img, (dol_x - 1) * 32, dol_y * 32);
-	img = get_image(all->game->g_map[dol_y + 1][dol_x], all);
-	mlx_put_image_to_window(all->mlx, all->win, img, dol_x * 32, (dol_y + 1) * 32);
-	img = get_image(all->game->g_map[dol_y - 1][dol_x], all);
-	mlx_put_image_to_window(all->mlx, all->win, img, dol_x * 32, (dol_y - 1) * 32);
+	img = get_image(all->game->g_map[y][x], all);
+	mlx_put_image_to_window(all->mlx, all->win, img, x * 32, y * 32);
+	img = get_image(all->game->g_map[y][x + 1], all);
+	mlx_put_image_to_window(all->mlx, all->win, img, (x + 1) * 32, y * 32);
+	img = get_image(all->game->g_map[y][x - 1], all);
+	mlx_put_image_to_window(all->mlx, all->win, img, (x - 1) * 32, y * 32);
+	img = get_image(all->game->g_map[y + 1][x], all);
+	mlx_put_image_to_window(all->mlx, all->win, img, x * 32, (y + 1) * 32);
+	img = get_image(all->game->g_map[y - 1][x], all);
+	mlx_put_image_to_window(all->mlx, all->win, img, x * 32, (y - 1) * 32);
 }

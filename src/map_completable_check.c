@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map_completable_check.c                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adrgutie <adrgutie@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/19 16:00:23 by adrgutie          #+#    #+#             */
+/*   Updated: 2024/10/19 17:31:18 by adrgutie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 char	**dup_g_map(char **g_map)
@@ -25,7 +37,7 @@ char	**dup_g_map(char **g_map)
 void	filldupmap(char	**duped, int x, int y)
 {
 	if (duped[y][x] == '1' || duped[y][x] == 'f')
-		return	;
+		return ;
 	duped[y][x] = 'f';
 	filldupmap(duped, x + 1, y);
 	filldupmap(duped, x, y + 1);

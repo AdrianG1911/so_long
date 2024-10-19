@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   play.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adrgutie <adrgutie@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/19 16:00:13 by adrgutie          #+#    #+#             */
+/*   Updated: 2024/10/19 19:02:41 by adrgutie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 void	g_move(t_game *game, char move_dir)
@@ -32,7 +44,7 @@ void	fish_eat_check(t_game *game)
 	game->fish_left--;
 }
 
-int		finish_check(t_game *game)
+int	finish_check(t_game *game)
 {
 	if (game->g_map[game->dol_y][game->dol_x] != 'E')
 		return (-1);
@@ -41,7 +53,7 @@ int		finish_check(t_game *game)
 	return (1);
 }
 
-int		move_eat_finish(t_game *game, char move_dir)
+int	move_eat_finish(t_game *game, char move_dir)
 {
 	g_move(game, move_dir);
 	fish_eat_check(game);

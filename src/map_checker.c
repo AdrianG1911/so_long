@@ -1,5 +1,16 @@
-#include "so_long.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map_checker.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adrgutie <adrgutie@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/19 16:00:27 by adrgutie          #+#    #+#             */
+/*   Updated: 2024/10/19 17:40:25 by adrgutie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "so_long.h"
 
 int	outer_wall(char	**g_map)
 {
@@ -25,6 +36,7 @@ int	outer_wall(char	**g_map)
 	}
 	return (1);
 }
+
 int	check_stuff(char tocheck, int *pefij)
 {
 	if (tocheck == 'P')
@@ -53,25 +65,27 @@ int	count_stuff(char **g_map)
 		while (g_map[pefij[3]][pefij[4]])
 		{
 			if (check_stuff(g_map[pefij[3]][pefij[4]], pefij) == -1)
-				return(ft_putendl_fd("Error\ninvalid char in map", STDERR_FILENO), -1);
+				return (ft_putendl_fd("Error\n\
+			invalid char in map", STDERR_FILENO), -1);
 			pefij[4]++;
 		}
-		pefij[3]++;			
+		pefij[3]++;
 	}
 	if (pefij[0] != 1 || pefij[1] != 1)
-		return (ft_putendl_fd("Error\nmap needs 1 start and end", STDERR_FILENO), -1);
+		return (ft_putendl_fd("Error\nput 1 start and end", STDERR_FILENO), -1);
 	if (pefij[2] < 1)
-		return (ft_putendl_fd("Error\nmap needs 1 or more fish", STDERR_FILENO), -1);
+		return (ft_putendl_fd("Error\nput 1 or more fish", STDERR_FILENO), -1);
 	return (1);
 }
 
 int	g_map_checker(char **g_map)
 {
 	if (outer_wall(g_map) == -1)
-		return (ft_putendl_fd("Error\nouter wall rectangle needed", STDERR_FILENO), -1);
+		return (ft_putendl_fd("Error\n\
+	outer wall rectangle needed", STDERR_FILENO), -1);
 	if (count_stuff(g_map) == -1)
 		return (-1);
 	if (completable_check(g_map) == -1)
-	 	return (-1);
+		return (-1);
 	return (1);
 }

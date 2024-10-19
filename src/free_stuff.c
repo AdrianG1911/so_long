@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   free_stuff.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adrgutie <adrgutie@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/19 16:00:50 by adrgutie          #+#    #+#             */
+/*   Updated: 2024/10/19 17:34:34 by adrgutie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 void	free_g_map(char **g_map)
@@ -25,7 +37,7 @@ void	free_game(t_game *game)
 	}
 }
 
-void	free_textures(void *mlx, t_textures *tts)
+void	free_textures(void *mlx, t_tts *tts)
 {
 	if (tts)
 	{
@@ -48,7 +60,7 @@ void	free_all(t_all *all)
 	if (all)
 	{
 		free_game(all->game);
-		free_textures(all->mlx, all->textures);
+		free_textures(all->mlx, all->tts);
 		mlx_destroy_display(all->mlx);
 		free(all->mlx);
 		free(all);
